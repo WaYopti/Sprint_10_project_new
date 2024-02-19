@@ -8,9 +8,13 @@ from booking import create_booking
 
 def test_success_create_booking_name():
     body = helper.change_body_create("Jjjjj", "fieldfirst")
-    actual_code = test_success_create_booking_name()
+    actual_code = create_booking(body).status_code
     expected_code = 200
     assert actual_code == expected_code
+
+
+def test_success_create_booking():
+    pass
 
 
 @pytest.mark.parametrize("total", [
@@ -26,8 +30,8 @@ def test_success_create_book_price(total):
 
 
 def test_success_delete_book():
-    responce = booking.create_booking(data.body_create) # создали бронирование
-    booking_id = responce.json()["bookingid"]
+    response = booking.create_booking(data.body_create) # создали бронирование
+    booking_id = response.json()["bookingid"]
     act_code = booking.delete_booking(booking_id).status_code
     exp_code = 201
     assert act_code == exp_code
